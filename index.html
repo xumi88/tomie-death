@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autoplay Local Video</title>
+    <style>
+        /* Make the video responsive */
+        video {
+            width: 100%;
+            height: auto;
+            max-width: 100%;
+        }
+
+        /* Style for the fullscreen button */
+        #fullscreen-btn {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        #fullscreen-btn:hover {
+            background-color: #0056b3;
+        }
+
+        /* Hide the fullscreen button on mobile devices */
+        @media (max-width: 768px) {
+            #fullscreen-btn {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Video Element -->
+    <video id="local-video" controls autoplay muted loop playsinline>
+        <source src="https://xumi88.github.io/tomie-death/tomie - death.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Fullscreen Button -->
+    <button id="fullscreen-btn">Go Fullscreen</button>
+
+    <script>
+        const video = document.getElementById('local-video');
+        const fullscreenBtn = document.getElementById('fullscreen-btn');
+
+        // Fullscreen button functionality
+        fullscreenBtn.addEventListener('click', () => {
+            if (video.requestFullscreen) {
+                video.requestFullscreen();
+            } else if (video.webkitRequestFullscreen) { // Safari
+                video.webkitRequestFullscreen();
+            } else if (video.msRequestFullscreen) { // IE/Edge
+                video.msRequestFullscreen();
+            }
+        });
+
+        // Optional: Hide the fullscreen button on mobile devices
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        if (isMobile) {
+            fullscreenBtn.style.display = 'none';
+        }
+    </script>
+</body>
+</html>
